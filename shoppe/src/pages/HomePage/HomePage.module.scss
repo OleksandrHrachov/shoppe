@@ -1,0 +1,21 @@
+.homePageWrapper {
+  padding: 50px 0px;
+  
+}
+
+.pageTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 33px;
+  line-height: 43px;
+  margin-bottom: 40px;
+}
+
+.productListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 90px;
+  column-gap: 50px;
+
+}
