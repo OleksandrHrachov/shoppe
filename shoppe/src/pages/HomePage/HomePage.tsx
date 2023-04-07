@@ -1,53 +1,39 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import ProductCard from '../../components/ProductCard';
 import styles from './HomePage.module.scss';
-
-interface IProduct {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { useAppSelector, useAppDispatch } from '../../store/hooks'
+import { getState, loading } from "../../store/productSlice";
 
 const HomePage: FC = () => {
-  const [data, setData] = useState<IProduct[] | []>([]);
-  const [loading, setLoading] = useState(false);
-  console.log(data);
-
-  const getData =async () => {
-    setLoading(true);
-    const data = await fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      setLoading(false)
-    setData(data);
-      
-  }
+  const products = useAppSelector(getState);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(loading());
+  }, [dispatch]); 
 
   return (
     <div className={styles.homePageWrapper}>
-      <p className={styles.pageTitle}>Shop The Latest</p>
-      {data.length ? (
+      {products.products.length ? (
+        <>
+        <p className={styles.pageTitle}>Shop The Latest</p>
         <div className={styles.productListWrapper}>
-          {data.map((product) => {
-          return <ProductCard id={product.id} title={product.title} price={product.price} image={product.image} />
-        })}
+          {products.products.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                title={product.title}
+                price={product.price}
+                image={product.image}
+              />
+            );
+          })}
         </div>
-        
+        </>
       ) : (
-        loading && <p>LOADING...</p>
+        products.isLoading && <h2>LOADING...</h2>
       )}
-
-
     </div>
   );
 };
