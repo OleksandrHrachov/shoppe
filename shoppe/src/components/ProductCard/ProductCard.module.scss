@@ -1,9 +1,9 @@
 .cardWrapper {
-  width: 382px;
+  flex: 0 0 30%;
 }
 
 .productImg {
-  width: 100%;
+  width: 382px;
   height: 408px;
   display: block;
   margin: 0 auto 25px;
@@ -12,6 +12,7 @@
 }
 
 .productTitle {
+  max-width: 382px;
   font-size: 20px;
   line-height: 26px;
   margin-bottom: 17px;

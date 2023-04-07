@@ -11,12 +11,10 @@ interface IProps {
 
 const ProductCard: FC<IProps> = ({id, title, price, image}) => {
   return (
-    <Link to={`/product/${id}`}>
-      <div className={styles.cardWrapper}>
+    <Link className={styles.cardWrapper} to={`/product/${id}`}>
         <img className={styles.productImg} src={image} alt="product image" />
         <p className={styles.productTitle}>{title}</p>
         <p className={styles.productPrice}>{`$ ${price}`}</p>
-      </div>
     </Link>
   );
 };

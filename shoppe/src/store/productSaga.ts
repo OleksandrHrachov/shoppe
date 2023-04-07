@@ -1,10 +1,18 @@
-import { call, put, takeEvery, take } from 'redux-saga/effects'
+import { call, put, takeEvery, fork, take } from 'redux-saga/effects'
 import { setProducts, setProduct, loading } from "./productSlice";
 import { IProduct } from '../types/sharedTypes';
 
+const getProducts = async () => {
+  return fetch("https://fakestoreapi.com/products").then((res) => res.json());
+};
+
 function* workGetProductsFetch() {
-  const products: IProduct[] = yield call(() => fetch("https://fakestoreapi.com/products").then((res) => res.json()));
-  yield put(setProducts(products));
+  try {
+    const products: IProduct[] = yield call(getProducts);
+    yield put(setProducts(products));
+  } catch (error) {
+    console.log('ERROR =>', error);
+  }
 };
 
 function* productSaga() {

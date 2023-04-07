@@ -3,3 +3,7 @@
   margin: 0 auto;
   padding: 50px 96px 108px;
 }
+
+main {
+  min-height: calc(100vh - 92px - 170px - 50px - 100px);
+}
