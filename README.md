@@ -6,6 +6,8 @@ The project was created to improve the skills of using such popular libraries su
 - Redux;
 - Redux-Saga;
 
+[DEMO LINK](https://oleksandrhrachov.github.io/shoppe/)
+
 ## Minimum requirements:
 - node version 14 and higher;
 
